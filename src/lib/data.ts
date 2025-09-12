@@ -19,33 +19,41 @@ export type Stop = {
 };
 
 export const routes: Route[] = [
-  { id: '1', name: 'Route 101 - Downtown Express' },
-  { id: '2', name: 'Route 202 - Crosstown' },
-  { id: '3', name: 'Route 303 - University Line' },
-  { id: '4', name: 'Route 404 - Airport Shuttle' },
+  { id: '1', name: 'Route 101 - Amritsar to Ludhiana' },
+  { id: '2', name: 'Route 202 - Chandigarh to Jalandhar' },
+  { id: '3', name: 'Route 303 - Patiala to Bathinda' },
+  { id: '4', name: 'Route 404 - Mohali IT Park Shuttle' },
 ];
 
 export const stops: Stop[] = [
-  { id: 's1', name: 'Central Station', routeId: '1', location: { lat: 40.7128, lng: -74.0060 } },
-  { id: 's2', name: 'City Hall', routeId: '1', location: { lat: 40.7145, lng: -74.0082 } },
-  { id: 's3', name: 'Financial District', routeId: '1', location: { lat: 40.7075, lng: -74.0113 } },
+  // Amritsar to Ludhiana
+  { id: 's1', name: 'Amritsar Bus Stand', routeId: '1', location: { lat: 31.6340, lng: 74.8723 } },
+  { id: 's2', name: 'Jalandhar Bypass', routeId: '1', location: { lat: 31.3260, lng: 75.5762 } },
+  { id: 's3', name: 'Phillaur', routeId: '1', location: { lat: 31.0253, lng: 75.7869 } },
+  { id: 's4', name: 'Ludhiana Bus Stand', routeId: '1', location: { lat: 30.9110, lng: 75.8502 } },
   
-  { id: 's4', name: 'Midtown Mall', routeId: '2', location: { lat: 40.7549, lng: -73.9840 } },
-  { id: 's5', name: 'Green Park', routeId: '2', location: { lat: 40.7680, lng: -73.9822 } },
-  { id: 's6', name: 'Eastside Library', routeId: '2', location: { lat: 40.7590, lng: -73.9694 } },
+  // Chandigarh to Jalandhar
+  { id: 's5', name: 'ISBT Sector 17, Chandigarh', routeId: '2', location: { lat: 30.7415, lng: 76.7762 } },
+  { id: 's6', name: 'Kharar', routeId: '2', location: { lat: 30.7423, lng: 76.6573 } },
+  { id: 's7', name: 'Phagwara', routeId: '2', location: { lat: 31.2178, lng: 75.7726 } },
+  { id: 's8', name: 'Jalandhar Bus Stand', routeId: '2', location: { lat: 31.3260, lng: 75.5762 } },
   
-  { id: 's7', name: 'Science Building', routeId: '3', location: { lat: 40.7291, lng: -73.9965 } },
-  { id: 's8', name: 'Main Campus', routeId: '3', location: { lat: 40.7308, lng: -73.9975 } },
-  { id: 's9', name: 'Student Dorms', routeId: '3', location: { lat: 40.7325, lng: -73.9985 } },
+  // Patiala to Bathinda
+  { id: 's9', name: 'Patiala Bus Stand', routeId: '3', location: { lat: 30.3398, lng: 76.3869 } },
+  { id: 's10', name: 'Sangrur', routeId: '3', location: { lat: 30.2515, lng: 75.8373 } },
+  { id: 's11', name: 'Barnala', routeId: '3', location: { lat: 30.3789, lng: 75.5422 } },
+  { id: 's12', name: 'Bathinda Bus Stand', routeId: '3', location: { lat: 30.2110, lng: 74.9455 } },
 
-  { id: 's10', name: 'Terminal A', routeId: '4', location: { lat: 40.6413, lng: -73.7781 } },
-  { id: 's11', name: 'Terminal B', routeId: '4', location: { lat: 40.6443, lng: -73.7822 } },
+  // Mohali IT Park Shuttle
+  { id: 's13', name: 'Mohali Phase 8', routeId: '4', location: { lat: 30.7046, lng: 76.7179 } },
+  { id: 's14', name: 'Sohana', routeId: '4', location: { lat: 30.6865, lng: 76.7231 } },
+  { id: 's15', name: 'Quark City', routeId: '4', location: { lat: 30.7018, lng: 76.7641 } },
 ];
 
 export const buses: Bus[] = [
-  { id: 'b1', routeId: '1', location: { lat: 40.7135, lng: -74.0071 }, occupancy: 65, eta: '5 min' },
-  { id: 'b2', routeId: '1', location: { lat: 40.7090, lng: -74.0100 }, occupancy: 30, eta: '12 min' },
-  { id: 'b3', routeId: '2', location: { lat: 40.7600, lng: -73.9750 }, occupancy: 80, eta: '8 min' },
-  { id: 'b4', routeId: '3', location: { lat: 40.7300, lng: -73.9970 }, occupancy: 45, eta: '3 min' },
-  { id: 'b5', routeId: '4', location: { lat: 40.6425, lng: -73.7800 }, occupancy: 95, eta: 'Arriving' },
+  { id: 'pb01', routeId: '1', location: { lat: 31.55, lng: 75.05 }, occupancy: 65, eta: '15 min' },
+  { id: 'pb02', routeId: '1', location: { lat: 31.15, lng: 75.65 }, occupancy: 30, eta: '32 min' },
+  { id: 'pb03', routeId: '2', location: { lat: 30.73, lng: 76.70 }, occupancy: 80, eta: '8 min' },
+  { id: 'pb04', routeId: '3', location: { lat: 30.29, lng: 76.05 }, occupancy: 45, eta: '20 min' },
+  { id: 'pb05', routeId: '4', location: { lat: 30.69, lng: 76.74 }, occupancy: 95, eta: 'Arriving' },
 ];
