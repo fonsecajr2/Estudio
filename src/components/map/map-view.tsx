@@ -35,9 +35,9 @@ export default function MapView() {
   
   const [buses, setBuses] = useState<Bus[]>(initialBuses);
   const [viewState, setViewState] = useState({
-    longitude: -73.935242,
-    latitude: 40.73061,
-    zoom: 12
+    longitude: 75.3412,
+    latitude: 31.1471,
+    zoom: 7
   });
 
   useEffect(() => {

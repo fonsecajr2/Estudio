@@ -4,8 +4,8 @@ import 'mapbox-gl/dist/mapbox-gl.css';
 import { Toaster } from "@/components/ui/toaster"
 
 export const metadata: Metadata = {
-  title: 'TrackIt - Real-Time Bus Tracking',
-  description: 'TrackIt provides real-time bus tracking and route information.',
+  title: 'TrackIt - Punjab Bus Tracking',
+  description: 'TrackIt provides real-time bus tracking and route information for Punjab.',
 };
 
 export default function RootLayout({
