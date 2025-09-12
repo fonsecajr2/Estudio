@@ -1,37 +1,33 @@
 'use client';
 
-import { useState } from 'react';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import RouteSelector from './route-selector';
 import BusDetails from './bus-details';
 import AiSuggester from './ai-suggester';
-import { routes, stops, buses, type Route, type Stop, type Bus } from '@/lib/data';
+import type { Route, Stop, Bus } from '@/lib/data';
 import { Map, Bot } from 'lucide-react';
 
-export default function ControlPanel() {
-  const [selectedRoute, setSelectedRoute] = useState<Route | null>(null);
-  const [filteredStops, setFilteredStops] = useState<Stop[]>([]);
-  const [filteredBuses, setFilteredBuses] = useState<Bus[]>([]);
-  const [selectedBus, setSelectedBus] = useState<Bus | null>(null);
+interface ControlPanelProps {
+  routes: Route[];
+  stops: Stop[];
+  buses: Bus[];
+  selectedRouteId?: string;
+  selectedBusId?: string;
+  selectedBus: Bus | null;
+  onRouteSelect: (routeId: string) => void;
+  onBusSelect: (busId: string) => void;
+}
 
-  const handleRouteSelect = (routeId: string) => {
-    const route = routes.find((r) => r.id === routeId) || null;
-    setSelectedRoute(route);
-    if (route) {
-      setFilteredStops(stops.filter((s) => s.routeId === routeId));
-      setFilteredBuses(buses.filter((b) => b.routeId === routeId));
-    } else {
-      setFilteredStops([]);
-      setFilteredBuses([]);
-    }
-    setSelectedBus(null);
-  };
-
-  const handleBusSelect = (busId: string) => {
-    const bus = buses.find((b) => b.id === busId) || null;
-    setSelectedBus(bus);
-  };
-
+export default function ControlPanel({
+  routes,
+  stops,
+  buses,
+  selectedRouteId,
+  selectedBusId,
+  selectedBus,
+  onRouteSelect,
+  onBusSelect,
+}: ControlPanelProps) {
   return (
     <Tabs defaultValue="routes" className="w-full">
       <TabsList className="grid w-full grid-cols-2">
@@ -48,12 +44,12 @@ export default function ControlPanel() {
         <div id="routes" className="space-y-4">
           <RouteSelector
             routes={routes}
-            stops={filteredStops}
-            buses={filteredBuses}
-            onRouteSelect={handleRouteSelect}
-            onBusSelect={handleBusSelect}
-            selectedRouteId={selectedRoute?.id}
-            selectedBusId={selectedBus?.id}
+            stops={stops}
+            buses={buses}
+            onRouteSelect={onRouteSelect}
+            onBusSelect={onBusSelect}
+            selectedRouteId={selectedRouteId}
+            selectedBusId={selectedBusId}
           />
           {selectedBus && <BusDetails bus={selectedBus} />}
         </div>
