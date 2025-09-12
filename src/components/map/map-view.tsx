@@ -1,7 +1,8 @@
 'use client';
 
-import { useState, useEffect, useMemo } from 'react';
-import { APIProvider, Map, AdvancedMarker } from '@vis.gl/react-google-maps';
+import { useState, useEffect } from 'react';
+import Map, { Marker } from 'react-map-gl';
+import 'mapbox-gl/dist/mapbox-gl.css';
 import { buses as initialBuses } from '@/lib/data';
 import type { Bus } from '@/lib/data';
 import { AlertTriangle } from 'lucide-react';
@@ -31,11 +32,14 @@ const BusIcon = (props: React.SVGProps<SVGSVGElement> & { bus: Bus }) => (
 
 
 export default function MapView() {
-  const API_KEY = process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY;
-  const MAP_ID = process.env.NEXT_PUBLIC_GOOGLE_MAPS_ID || 'DEMO_MAP_ID';
-  const position = { lat: 40.73061, lng: -73.935242 };
-
+  const MAPBOX_ACCESS_TOKEN = process.env.NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN;
+  
   const [buses, setBuses] = useState<Bus[]>(initialBuses);
+  const [viewState, setViewState] = useState({
+    longitude: -73.935242,
+    latitude: 40.73061,
+    zoom: 12
+  });
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -50,231 +54,21 @@ export default function MapView() {
 
     return () => clearInterval(interval);
   }, []);
-  
-  const mapOptions = useMemo(() => ({
-      mapId: MAP_ID,
-      disableDefaultUI: true,
-      gestureHandling: 'greedy',
-      styles: [
-        {
-            "featureType": "all",
-            "elementType": "labels.text.fill",
-            "stylers": [
-                {
-                    "color": "#7c93a3"
-                },
-                {
-                    "lightness": "-10"
-                }
-            ]
-        },
-        {
-            "featureType": "administrative.country",
-            "elementType": "geometry",
-            "stylers": [
-                {
-                    "visibility": "on"
-                }
-            ]
-        },
-        {
-            "featureType": "administrative.country",
-            "elementType": "geometry.stroke",
-            "stylers": [
-                {
-                    "color": "#a0a4a5"
-                }
-            ]
-        },
-        {
-            "featureType": "administrative.province",
-            "elementType": "geometry.stroke",
-            "stylers": [
-                {
-                    "color": "#62838e"
-                }
-            ]
-        },
-        {
-            "featureType": "landscape",
-            "elementType": "geometry.fill",
-            "stylers": [
-                {
-                    "color": "#dde3e3"
-                }
-            ]
-        },
-        {
-            "featureType": "landscape.man_made",
-            "elementType": "geometry.stroke",
-            "stylers": [
-                {
-                    "color": "#3f4a51"
-                },
-                {
-                    "weight": "0.30"
-                }
-            ]
-        },
-        {
-            "featureType": "poi",
-            "elementType": "all",
-            "stylers": [
-                {
-                    "visibility": "simplified"
-                }
-            ]
-        },
-        {
-            "featureType": "poi.attraction",
-            "elementType": "all",
-            "stylers": [
-                {
-                    "visibility": "on"
-                }
-            ]
-        },
-        {
-            "featureType": "poi.business",
-            "elementType": "all",
-            "stylers": [
-                {
-                    "visibility": "off"
-                }
-            ]
-        },
-        {
-            "featureType": "poi.government",
-            "elementType": "all",
-            "stylers": [
-                {
-                    "visibility": "off"
-                }
-            ]
-        },
-        {
-            "featureType": "poi.park",
-            "elementType": "all",
-            "stylers": [
-                {
-                    "visibility": "on"
-                }
-            ]
-        },
-        {
-            "featureType": "poi.school",
-            "elementType": "all",
-            "stylers": [
-                {
-                    "visibility": "off"
-                }
-            ]
-        },
-        {
-            "featureType": "road",
-            "elementType": "all",
-            "stylers": [
-                {
-                    "saturation": -100
-                },
-                {
-                    "lightness": 45
-                }
-            ]
-        },
-        {
-            "featureType": "road",
-            "elementType": "geometry.fill",
-            "stylers": [
-                {
-                    "color": "#ffffff"
-                }
-            ]
-        },
-        {
-            "featureType": "road",
-            "elementType": "labels.icon",
-            "stylers": [
-                {
-                    "visibility": "off"
-                }
-            ]
-        },
-        {
-            "featureType": "road.highway",
-            "elementType": "all",
-            "stylers": [
-                {
-                    "visibility": "simplified"
-                }
-            ]
-        },
-        {
-            "featureType": "road.highway",
-            "elementType": "geometry.fill",
-            "stylers": [
-                {
-                    "color": "#c1d1d6"
-                }
-            ]
-        },
-        {
-            "featureType": "road.arterial",
-            "elementType": "labels.icon",
-            "stylers": [
-                {
-                    "visibility": "off"
-                }
-            ]
-        },
-        {
-            "featureType": "transit",
-            "elementType": "all",
-            "stylers": [
-                {
-                    "visibility": "off"
-                }
-            ]
-        },
-        {
-            "featureType": "water",
-            "elementType": "all",
-            "stylers": [
-                {
-                    "color": "#a2daf2"
-                },
-                {
-                    "visibility": "on"
-                }
-            ]
-        },
-        {
-            "featureType": "water",
-            "elementType": "geometry.fill",
-            "stylers": [
-                {
-                    "color": "#a2daf2"
-                }
-            ]
-        }
-    ],
-  }), [MAP_ID]);
 
-  if (!API_KEY) {
+  if (!MAPBOX_ACCESS_TOKEN) {
     return (
       <div className="flex h-full w-full items-center justify-center bg-muted p-4">
         <Card className="max-w-md">
           <CardContent className="p-6">
             <div className="flex flex-col items-center text-center gap-4">
                 <AlertTriangle className="h-12 w-12 text-destructive" />
-                <h2 className="text-xl font-semibold">Google Maps API Key Missing</h2>
+                <h2 className="text-xl font-semibold">Mapbox Access Token Missing</h2>
                 <p className="text-muted-foreground">
-                    Please add your Google Maps API key to your environment variables to display the map. Create a <code>.env.local</code> file in the root of your project and add the following line:
+                    Please add your Mapbox access token to your environment variables to display the map. Create a <code>.env</code> file in the root of your project and add the following line:
                 </p>
                 <code className="w-full text-left p-2 bg-slate-200 dark:bg-slate-800 rounded-md text-sm">
-                    NEXT_PUBLIC_GOOGLE_MAPS_API_KEY="YOUR_API_KEY"
+                    NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN="YOUR_ACCESS_TOKEN"
                 </code>
-                 <p className="text-muted-foreground text-sm">You may also want to provide a Map ID via NEXT_PUBLIC_GOOGLE_MAPS_ID for custom styling.</p>
             </div>
           </CardContent>
         </Card>
@@ -283,18 +77,18 @@ export default function MapView() {
   }
 
   return (
-    <APIProvider apiKey={API_KEY}>
-      <Map
-        defaultCenter={position}
-        defaultZoom={12}
-        options={mapOptions}
-      >
-        {buses.map((bus) => (
-          <AdvancedMarker key={bus.id} position={bus.location}>
-            <BusIcon bus={bus}/>
-          </AdvancedMarker>
-        ))}
-      </Map>
-    </APIProvider>
+    <Map
+      {...viewState}
+      onMove={evt => setViewState(evt.viewState)}
+      style={{width: '100%', height: '100%'}}
+      mapStyle="mapbox://styles/mapbox/streets-v11"
+      mapboxAccessToken={MAPBOX_ACCESS_TOKEN}
+    >
+      {buses.map((bus) => (
+        <Marker key={bus.id} longitude={bus.location.lng} latitude={bus.location.lat}>
+          <BusIcon bus={bus}/>
+        </Marker>
+      ))}
+    </Map>
   );
 }
