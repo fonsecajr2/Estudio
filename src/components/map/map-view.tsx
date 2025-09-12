@@ -2,7 +2,6 @@
 
 import { useState, useEffect } from 'react';
 import Map, { Marker } from 'react-map-gl';
-import 'mapbox-gl/dist/mapbox-gl.css';
 import { buses as initialBuses } from '@/lib/data';
 import type { Bus } from '@/lib/data';
 import { AlertTriangle } from 'lucide-react';
