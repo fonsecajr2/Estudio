@@ -1,0 +1,277 @@
+{
+  "users": [
+    {
+      "id": "user-1",
+      "name": "John Doe",
+      "email": "john.doe@example.com",
+      "role": "user"
+    },
+    {
+      "id": "driver-1",
+      "name": "Aman Singh",
+      "email": "aman.singh@example.com",
+      "role": "driver"
+    },
+    {
+      "id": "admin-1",
+      "name": "Admin",
+      "email": "admin@example.com",
+      "role": "admin"
+    }
+  ],
+  "routes": [
+    {
+      "id": "1",
+      "name": "Route 101 - Amritsar to Ludhiana",
+      "stopIds": [
+        "s1",
+        "s2",
+        "s3",
+        "s4"
+      ]
+    },
+    {
+      "id": "2",
+      "name": "Route 202 - Chandigarh to Jalandhar",
+      "stopIds": [
+        "s5",
+        "s6",
+        "s7",
+        "s8"
+      ]
+    },
+    {
+      "id": "3",
+      "name": "Route 303 - Patiala to Bathinda",
+      "stopIds": [
+        "s9",
+        "s10",
+        "s11",
+        "s12"
+      ]
+    },
+    {
+      "id": "4",
+      "name": "Route 404 - Mohali IT Park Shuttle",
+      "stopIds": [
+        "s13",
+        "s14",
+        "s15"
+      ]
+    }
+  ],
+  "stops": [
+    {
+      "id": "s1",
+      "name": "Amritsar Bus Stand",
+      "routeId": "1",
+      "location": {
+        "lat": 31.634,
+        "lng": 74.8723
+      }
+    },
+    {
+      "id": "s2",
+      "name": "Jalandhar Bypass",
+      "routeId": "1",
+      "location": {
+        "lat": 31.326,
+        "lng": 75.5762
+      }
+    },
+    {
+      "id": "s3",
+      "name": "Phillaur",
+      "routeId": "1",
+      "location": {
+        "lat": 31.0253,
+        "lng": 75.7869
+      }
+    },
+    {
+      "id": "s4",
+      "name": "Ludhiana Bus Stand",
+      "routeId": "1",
+      "location": {
+        "lat": 30.911,
+        "lng": 75.8502
+      }
+    },
+    {
+      "id": "s5",
+      "name": "ISBT Sector 17, Chandigarh",
+      "routeId": "2",
+      "location": {
+        "lat": 30.7415,
+        "lng": 76.7762
+      }
+    },
+    {
+      "id": "s6",
+      "name": "Kharar",
+      "routeId": "2",
+      "location": {
+        "lat": 30.7423,
+        "lng": 76.6573
+      }
+    },
+    {
+      "id": "s7",
+      "name": "Phagwara",
+      "routeId": "2",
+      "location": {
+        "lat": 31.2178,
+        "lng": 75.7726
+      }
+    },
+    {
+      "id": "s8",
+      "name": "Jalandhar Bus Stand",
+      "routeId": "2",
+      "location": {
+        "lat": 31.326,
+        "lng": 75.5762
+      }
+    },
+    {
+      "id": "s9",
+      "name": "Patiala Bus Stand",
+      "routeId": "3",
+      "location": {
+        "lat": 30.3398,
+        "lng": 76.3869
+      }
+    },
+    {
+      "id": "s10",
+      "name": "Sangrur",
+      "routeId": "3",
+      "location": {
+        "lat": 30.2515,
+        "lng": 75.8373
+      }
+    },
+    {
+      "id": "s11",
+      "name": "Barnala",
+      "routeId": "3",
+      "location": {
+        "lat": 30.3789,
+        "lng": 75.5422
+      }
+    },
+    {
+      "id": "s12",
+      "name": "Bathinda Bus Stand",
+      "routeId": "3",
+      "location": {
+        "lat": 30.211,
+        "lng": 74.9455
+      }
+    },
+    {
+      "id": "s13",
+      "name": "Mohali Phase 8",
+      "routeId": "4",
+      "location": {
+        "lat": 30.7046,
+        "lng": 76.7179
+      }
+    },
+    {
+      "id": "s14",
+      "name": "Sohana",
+      "routeId": "4",
+      "location": {
+        "lat": 30.6865,
+        "lng": 76.7231
+      }
+    },
+    {
+      "id": "s15",
+      "name": "Quark City",
+      "routeId": "4",
+      "location": {
+        "lat": 30.7018,
+        "lng": 76.7641
+      }
+    }
+  ],
+  "buses": [
+    {
+      "id": "PB10AB1234",
+      "driverId": "driver-1",
+      "routeId": "1",
+      "location": {
+        "lat": 31.55,
+        "lng": 75.05
+      },
+      "occupancy": 50,
+      "status": "active"
+    },
+    {
+      "id": "pb02",
+      "driverId": null,
+      "routeId": "1",
+      "location": {
+        "lat": 31.15,
+        "lng": 75.65
+      },
+      "occupancy": 30,
+      "status": "inactive"
+    },
+    {
+      "id": "pb03",
+      "driverId": null,
+      "routeId": "2",
+      "location": {
+        "lat": 30.73,
+        "lng": 76.7
+      },
+      "occupancy": 80,
+      "status": "inactive"
+    },
+    {
+      "id": "pb04",
+      "driverId": null,
+      "routeId": "3",
+      "location": {
+        "lat": 30.29,
+        "lng": 76.05
+      },
+      "occupancy": 45,
+      "status": "inactive"
+    },
+    {
+      "id": "pb05",
+      "driverId": null,
+      "routeId": "4",
+      "location": {
+        "lat": 30.69,
+        "lng": 76.74
+      },
+      "occupancy": 95,
+      "status": "inactive"
+    }
+  ],
+  "trips": [
+    {
+      "id": "0029b119-87bc-484f-a680-33837ec02740",
+      "driverId": "driver-1",
+      "busId": "PB10AB1234",
+      "routeId": "1",
+      "startTime": "2025-09-12T20:43:01.193Z",
+      "endTime": null,
+      "status": "ongoing"
+    },
+    {
+      "id": "c8fea1ab-4e1d-4c9a-971b-92501119c683",
+      "driverId": "driver-1",
+      "busId": "PB10AB1234",
+      "routeId": "1",
+      "startTime": "2025-09-12T20:47:01.172Z",
+      "endTime": null,
+      "status": "ongoing"
+    }
+  ]
+}

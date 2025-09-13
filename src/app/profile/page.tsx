@@ -25,6 +25,7 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { useToast } from "@/hooks/use-toast";
+import { useRouter } from "next/navigation";
 
 const formSchema = z.object({
   driverId: z.string().min(1, { message: "Driver ID is required." }),
@@ -34,6 +35,7 @@ const formSchema = z.object({
 export default function ProfilePage() {
   const [isLoading, setIsLoading] = React.useState(false);
   const { toast } = useToast();
+  const router = useRouter();
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -55,8 +57,8 @@ export default function ProfilePage() {
         description: "Redirecting to your dashboard...",
       });
       // Exemplo de redirecionamento real:
-      // const router = useRouter();
-      // router.push("/dashboard");
+      
+      router.push("/driverdash");
     } else {
       form.setError("root", { message: "Invalid credentials. Please try again." });
       toast({
