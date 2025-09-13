@@ -94,7 +94,7 @@ export default function DriverDashboard() {
     if (!trip) return;
     setIsEndingTrip(true);
     try {
-      const response = await fetch(`/api/trips/${trip.id}`, {
+      const response = await fetch(`/api/trips/${(trip as any).id}`, {
         method: "PUT",
       });
       const endedTrip = await response.json();
@@ -153,23 +153,23 @@ export default function DriverDashboard() {
         <aside className="w-full flex-col border-b bg-card p-4 shadow-lg md:w-96 md:border-r md:border-b-0">
           <Card className="w-full border-none bg-transparent shadow-none">
             <CardHeader className="p-2">
-              <CardTitle className="text-2xl">Bem-vindo, {driverData.name}</CardTitle>
+              <CardTitle className="text-2xl">Welcome, {driverData.name}</CardTitle>
             </CardHeader>
             <CardContent className="space-y-6 p-2">
               <div>
-                <h2 className="mb-2 font-semibold text-muted-foreground">Seu veículo</h2>
+                <h2 className="mb-2 font-semibold text-muted-foreground">Your Bus</h2>
                 <div className="flex items-center gap-4">
                   <BusFront className="h-8 w-8 text-primary" />
                   <div>
-                    <div>Ônibus: <span className="font-mono">{driverData.busNumber}</span></div>
-                    <div>ID Motorista: <span className="font-mono">{driverData.driverId}</span></div>
+                    <div>Bus: <span className="font-mono">{driverData.busNumber}</span></div>
+                    <div>Driver ID: <span className="font-mono">{driverData.driverId}</span></div>
                   </div>
                 </div>
               </div>
 
               <Separator />
 
-              {trip && trip.status === 'ongoing' ? (
+              {trip && (trip as any).status === 'ongoing' ? (
                 <div className="space-y-4">
                   <div className="flex items-center gap-2 text-green-500">
                     <Wifi className="h-5 w-5" />
@@ -207,14 +207,14 @@ export default function DriverDashboard() {
 
               {route && (
                 <div>
-                  <h2 className="mb-2 font-semibold text-muted-foreground">Rota atribuída</h2>
+                  <h2 className="mb-2 font-semibold text-muted-foreground">Attributed Route</h2>
                   <div className="mb-2 flex items-center gap-2">
                     <Route className="h-6 w-6 text-emerald-600" />
                     <span className="font-bold">{route.name}</span>
                   </div>
                   <div>
                     <div className="mt-2">
-                      <span className="font-semibold">Paradas:</span>
+                      <span className="font-semibold">Stops:</span>
                       <ul className="ml-6 list-disc">
                         {routeStops.map((stop) => (
                           <li key={stop.id}>{stop.name}</li>

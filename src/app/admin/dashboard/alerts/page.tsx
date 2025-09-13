@@ -1,6 +1,6 @@
-import { DashboardHeader } from "@/components/dashboard/header";
-import { AnomalyDetector } from "@/components/dashboard/anomaly-detector";
-import { AlertsList } from "@/components/dashboard/alerts-list";
+import { DashboardHeader } from "@/app/admin/components/dashboard/header";
+import { AnomalyDetector } from "@/app/admin/components/dashboard/anomaly-detector";
+import { AlertsList } from "@/app/admin/components/dashboard/alerts-list";
 
 export default function AlertsPage() {
   return (

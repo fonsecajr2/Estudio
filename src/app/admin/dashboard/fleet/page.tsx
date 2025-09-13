@@ -1,5 +1,5 @@
-import { DashboardHeader } from '@/components/dashboard/header';
-import FleetContainer from '@/components/dashboard/fleet-container';
+import { DashboardHeader } from '@/app/admin/components/dashboard/header';
+import FleetContainer from '@/app/admin/components/dashboard/fleet-container';
 
 export default function FleetPage() {
   return (

@@ -1,5 +1,5 @@
-import { DashboardHeader } from "@/components/dashboard/header";
-import { DriverTable } from "@/components/dashboard/driver-table";
+import { DashboardHeader } from "@/app/admin/components/dashboard/header";
+import { DriverTable } from "@/app/admin/components/dashboard/driver-table";
 
 export default function DriversPage() {
   return (

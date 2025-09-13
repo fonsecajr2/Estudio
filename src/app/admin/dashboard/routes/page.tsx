@@ -1,5 +1,5 @@
-import { DashboardHeader } from "@/components/dashboard/header";
-import { RouteTable } from "@/components/dashboard/route-table";
+import { DashboardHeader } from "@/app/admin/components/dashboard/header";
+import { RouteTable } from "@/app/admin/components/dashboard/route-table";
 
 export default function RoutesPage() {
   return (
