@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { User, BusFront } from 'lucide-react';
+import { User, BusFront, Shield } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
@@ -13,6 +13,11 @@ export default function Header() {
         <h1 className="text-2xl font-bold font-headline text-foreground">TrackIt</h1>
       </Link>
       <div className="flex items-center gap-4">
+        <Link href="/admin/dashboard" aria-label="Admin Dashboard">
+          <Button variant="ghost" className="relative h-9 w-9 rounded-full">
+            <Shield className="h-6 w-6" />
+          </Button>
+        </Link>
         <Link href="/profile" aria-label="View Profile">
           <Button variant="ghost" className="relative h-9 w-9 rounded-full">
             <Avatar className="h-9 w-9">
